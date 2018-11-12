@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row top-margin">
+        <div class="col-sm-12">
+            <h2>Flight Search Engine</h2>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-3 border">			
+            <ul class="nav nav-tabs nav-margin" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link" [class.active]="selectedNav=='one-way'" data-toggle="tab" (click)="navChangeEventHandler('one-way');searchForm.reset();">One Way</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [class.active]="selectedNav=='return'" data-toggle="tab" (click)="navChangeEventHandler('return');searchForm.reset();">Return</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content tab-content-margin">
+                <div class="container tab-pane active"><br>
+                    <form class="border padding" #searchForm="ngForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="origin" placeholder="Enter Origin City" name="origin" required [(ngModel)]="origin" >
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="destination" placeholder="Enter Destination City" name="destination" required [(ngModel)]="destination">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Departure date</label>
+                            <input type="text" class="form-control" id="ddate" placeholder="dd/mm/yyyy" name="departDate" [bsConfig]="datePickerConfig" bsDatepicker [(ngModel)]="departDate" placement="right" required>
+                        </div>
+                        <div class="form-group" *ngIf="selectedNav=='return'">
+                            <label>Return date</label>
+                            <input type="text" class="form-control" id="rdate" placeholder="dd/mm/yyyy" name="returnDate" [bsConfig]="datePickerConfig" bsDatepicker [(ngModel)]="returnDate" placement="right" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Passengers</label>
+                            <select class="form-control" id="sel1" required 
+                            [(ngModel)]="passengers" name="passengers">
+                                <option *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]" [value]="number">{{ number }}</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary" [disabled]="!searchForm.form.valid">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9 border">
+            <app-flights [origin]="origin" [destination]="destination" [roundTrip]="return" [filteredFlights]="filteredFlights" [filter]="filter" [departDate]="departDate" [returnDate]="returnDate" [retunedFlights]="retunedFlights"></app-flights>
+        </div>
+    </div>
+</div>

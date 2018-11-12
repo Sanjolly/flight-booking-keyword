@@ -1,0 +1,128 @@
+<div *ngIf="filter">
+    <div class="row">
+      <div class="col-sm-8">
+          <p class="crumble-margin">
+
+            <b>
+              {{ origin| displeCrumble :destination :roundTrip |titlecase }}
+            </b>
+          </p>
+      </div>
+      <div class="col-sm-4">
+            <p class="dates-font">Depart {{ departDate | date:'d MMM, y'}} 
+                <br/> <span *ngIf="roundTrip">Return {{ returnDate | date:'d MMM, y'}}</span>
+            </p>
+      </div>
+      <hr>
+    </div>
+
+    <div class="row">
+            <div class="col-sm-7">
+            </div>
+            <div class="col-sm-3">
+                <p style="font-size: 15px;"></p>
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-success" [disabled]="!displyBookBtn">Book</button>
+            </div>
+        
+        </div>
+
+    
+    <div class="row border display-flights">
+        <div class="col-sm-6">
+            <div class="row display-grid">
+                <div class="col-sm-3 duration-div">
+                    <h6 class="duration-div-h2"> DURATION </h6>
+                </div>
+                <div class="col-sm-3 flight-diaplay-border" style="text-align:center;">
+                    <h6 class="depart-h6">DEPARTURE</h6>
+                </div>
+                <div class="col-sm-3 flight-diaplay-border">
+                    <h6 class="padding-top8">ARRIVAL</h6>
+                </div>
+                <div class="col-sm-3 flight-diaplay-border">
+                    <h6 class="price-h6"> PRICE </h6>
+                </div>
+            </div>
+            <div *ngIf="filteredFlights.length">
+                <ng-container *ngFor="let flight of filteredFlights">
+                    <div class="row display-grid" style="margin-top:15px;">
+                        <div class="col-sm-3">
+                            <div class="row" style="margin-left:-15px;padding-top:15px;">
+                                <div class="col-sm-4">
+                                    <input type="radio" name="oneWayFlightRadio" value="{{ flight['fare'] }}" (change)="radioChangeHandlerEvent($event)">
+                                </div>
+                                <div class="col-sm-8">
+                                    <img class="img-class"src="">
+                                    <p style="font-size:12px;">Spicejet</p>
+                                    <p class="flight-code">{{ flight['flight_code']}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 padding-top15">
+                            <p>{{ flight['departure_time'] }}</p>
+                            <p style="margin-top:-15px;font-size:14px;">Non stop</p>
+                        </div>
+                        <div class="col-sm-3 padding-top15">
+                            <p>{{ flight['arrival_time'] }}</p>
+                        </div>
+                        <div class="col-sm-3 padding-top15">
+                            <p> <i class="fa fa-inr font-size14"></i>{{ flight['fare'] | currency:'INR':false:'1.0-0' }}</p>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <div class="col-sm-6" style="margin-left:-12px;" *ngIf="roundTrip">
+            <div class="row display-grid">
+                <div class="col-sm-3 flight-diaplay-border">
+                    <h6 class="return-dur"> DURATION </h6>
+                </div>
+                <div class="col-sm-3 flight-diaplay-border">
+                    <h6 class="return-depart">DEPARTURE</h6>
+                </div>
+                <div class="col-sm-3 flight-diaplay-border">
+                    <h6 class="padding-top8">ARRIVAL</h6>
+                </div>
+                <div class="col-sm-3 flight-diaplay-border">
+                    <h6 class="padding-top8"> PRICE </h6>
+                </div>
+            </div>
+            <div *ngIf="retunedFlights">
+                    <ng-container *ngFor="let flight of retunedFlights">
+                        <div class="row top-margin display-grid">
+                            <div class="col-sm-3 padding-top15">
+                                <div class="row" style="margin-left:-15px;">
+                                    <div class="col-sm-4">
+                                        <input type="radio" name="roundTripFlightRadio" value="{{flight['fare']}}" (change)="radioChangeHandlerEvent($event)">
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <img class="img-class" src="">
+                                        <p style="font-size:12px;">Spicejet</p>
+                                        <p class="flight-code">{{ flight['flight_code']}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 padding-top15">
+                                <p>{{ flight['departure_time'] }}</p>
+                                <p class="font-size14; mar-ntop15">Non stop</p>
+                            </div>
+                            <div class="col-sm-3 padding-top15">
+                                <p>{{ flight['arrival_time'] }}</p>
+                            </div>
+                            <div class="col-sm-3 padding-top15">
+                                <p> <i class="fa fa-inr font-size14"></i>{{ flight['fare'] | currency:'INR':false:'1.0-0' }}</p>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!filter">
+  <div class="row">
+    No result found
+  </div>
+</div>

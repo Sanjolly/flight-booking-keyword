@@ -1,0 +1,82 @@
+/* You can add global styles to this file, and also import other style files */
+.Bookflightbtn{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 152px;
+}
+.nav-tabs {
+     border-bottom: none !important;
+}
+.nav-link.active {
+    color: blue !important;
+}
+.border {
+	border: 1px solid #ced4da;
+}
+.top-margin {
+	margin-top:15px;
+}
+.nav-margin {
+	margin-top:15px; margin-left:15px;
+}
+.tab-content-margin {
+	margin-top:-24px;
+}
+.padding {
+	padding:12px;
+}
+.crumble-margin {
+	margin-top:35px
+}
+.dates-font {
+	font-size:12px;margin-top:35px;
+}
+.row {
+	margin-left: 0px;
+}
+.duration-div {
+	border-right:0.5px solid #e8e7e4;margin-left:0px;
+}
+
+.duration-div-h2 {
+	margin-left:-5px;padding-top:8px;
+}
+.flight-diaplay-border {
+	border-right:1px solid #e8e7e4;
+}
+.img-class {
+	height:50px;width:50px;
+}
+.display-grid {
+	background-color:#ffffff;border-radius:5px;
+}
+.depart-h6 {
+	margin-left:-10px;padding-top:8px;
+}
+.padding-top8 {
+	padding-top:8px;
+}
+.price-h6 {
+	margin-left:15px;padding-top:8px;
+}
+.display-flights {
+	margin:1px; background-color:#e8e7e4;
+}
+.flight-code {
+	font-size:8px;margin-top:-15px;
+}
+.return-dur {
+	margin-left:-5px;padding-top:8px;
+}
+.return-depart {
+	margin-left:-10px;padding-top:8px;
+}
+.padding-top15 {
+	padding-top:15px;
+}
+.font-size14 {
+	font-size:14px;
+}
+.mar-ntop15 {
+	margin-top:-15px;
+}
